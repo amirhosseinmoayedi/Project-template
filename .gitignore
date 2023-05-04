@@ -239,5 +239,6 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+.idea
 # air
 /temp
