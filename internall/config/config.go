@@ -6,10 +6,12 @@ import (
 	"github.com/spf13/viper"
 )
 
-var Configs = struct {
+var Configs Config
+
+type Config struct {
 	Logger LoggerConfig `mapstructure:"log"`
 	Server ServerConfig `mapstructure:"server"`
-}{}
+}
 
 type LoggerConfig struct {
 	Level string `mapstructure:"level"`
@@ -37,7 +39,7 @@ func InitConfig(configFile string) {
 		log.Logger.WithError(err).Fatal("error reading config file")
 	}
 
-	err = v.Unmarshal(Configs)
+	err = v.Unmarshal(&Configs)
 	if err != nil {
 		log.Logger.WithError(err).Warn("error parsing configs to Config struct")
 	}
