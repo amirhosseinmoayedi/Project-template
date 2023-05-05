@@ -45,5 +45,5 @@ func init() {
 
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
-	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "configs.yaml", "config file (default is $HOME/configs.yaml)")
+	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "config.yaml", "config file (default is $HOME/configs.yaml)")
 }
