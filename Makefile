@@ -2,6 +2,7 @@ MAIN_PACKAGE_PATH := ./.
 BINARY_NAME := app
 DOCKER_IMAGE_NAME := app
 DOCKER_IMAGE_VERSION := 1.0
+DATABASE_DSN := "postgresql://postgres:postgres@localhost:5432/postgres?sslmode=disable"
 
 # ==================================================================================== #
 # HELPERS
@@ -91,3 +92,22 @@ compose/up:
 .PHONY: compose/teardown
 compose/up:
 	@docker compose down -v
+
+
+# ==================================================================================== #
+# DB Migration
+# ==================================================================================== #
+.PHONY: migration/up
+migration_up:
+	@migrate -path internall/infrastructure/migration/ -database ${DATABASE_DSN} -verbose up
+
+.PHONY: migration/down
+migration_down:
+	@migrate -path internall/infrastructure/migration/ -database ${DATABASE_DSN} -verbose down
+
+.PHONY: migration/drop
+dropdb:
+	@docker exec -it db dropdb sample_db
+
+.PHONY: migration/create
+	@docker exec -it db createdb --username=root --owner=root sample_db
