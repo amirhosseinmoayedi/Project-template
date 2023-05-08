@@ -3,3 +3,16 @@ server:
   host: "localhost"
 logger:
   level: "debug"
+database:
+  host: "localhost"
+  user: "postgres"
+  password: "postgres"
+  name: "postgres"
+  port: "5432"
+  ssl_mode: "disable"
+  timezone: "asia/tehran"
+  logger:
+    slow_threshold: 1
+    log_level: "info" # silent, error, warn ,info
+    ignore_record_not_found_error: true
+    parameterized_queries: true
