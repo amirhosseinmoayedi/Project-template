@@ -23,7 +23,7 @@ to quickly create a Cobra application.`,
 	// Run: func(cmd *cobra.Command, args []string) { },
 	PersistentPreRun: func(_ *cobra.Command, _ []string) {
 		config.InitConfig(cfgFile)
-		log.InitLogger("debug")
+		log.InitLogger(config.Configs.Logger.Level)
 	},
 }
 
